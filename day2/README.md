@@ -1,45 +1,36 @@
-# Week 4 - Day 1
+# Week 4 - Day 2
 
-## Python Backend Setup
+## Django Models and Database
 
 ### Topics Learned
 
-1. Python Virtual Environment
-2. pip
-3. Django Installation
-4. Django Version Checking
-5. Django Project Setup
-6. Django App Creation
+1. Django Models
+2. Django Fields
+3. SQLite Database
+4. Migrations
+5. Django Admin Panel
+6. Creating a Superuser
 
-### Python Version
+### Task Model
 
-Python 3.13.15
+A `Task` model was created with the following fields:
 
-### Django Version
+- `title` - Task title
+- `description` - Task description
+- `completed` - Task completion status
+- `created_at` - Task creation date and time
 
-6.1.1
+### Model Code
 
-### What is a Virtual Environment?
+```python
+from django.db import models
 
-A virtual environment creates a separate environment for a Python project. It helps keep project packages separate from other Python projects.
 
-### What is pip?
+class Task(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    completed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
-pip is Python's package installer. It is used to install and manage Python packages.
-
-### What is Django?
-
-Django is a Python web framework used to build web applications and backend APIs.
-
-### Commands Used
-
-```text
-python --version
-py -m venv venv
-venv\Scripts\activate
-python -m pip --version
-pip install django
-django-admin --version
-django-admin startproject tasktracker .
-python manage.py startapp tasks
-python manage.py check
+    def __str__(self):
+        return self.title
